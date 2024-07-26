@@ -17,7 +17,7 @@
         <plugins>
             <!-- SonarQube Plugin -->
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>orgcodehaus.mojo</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>${sonar.version}</version>
             </plugin>
