@@ -1,0 +1,33 @@
+Integrating SonarQube and Jenkins.
+so we are performing static code analyasis to test the code is OK or NOT 
+If its good then It PASSED QUALITY GATES in SonarQube 
+
+NOTE : in git repo, POM.xml should contain java code (so arrange java code for testing purpose)
+
+
+This is pipeline code in Jenkins:
+
+pipeline{
+    agent any
+    stages{
+        stage("git checkout"){
+            steps{
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/Mayuresh199906/javacode-repo-2607'
+            }
+        }
+        stage("maven build"){
+            steps{
+                sh 'mvn clean package'
+                
+            }
+        }
+        stage("sonarQube analyasis"){
+            steps{
+                withSonarQubeEnv('sonar10') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        
+        }
+    }
+}
